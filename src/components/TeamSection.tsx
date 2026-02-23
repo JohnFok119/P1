@@ -1,6 +1,7 @@
 import { Linkedin, Twitter } from "lucide-react";
 import giuseppiImg from "@/assets/giuseppi.png";
 import johnnyImg from "@/assets/johnny.png";
+import { useInView } from "@/hooks/use-in-view";
 
 /** Team member data for the founders section. */
 interface TeamMember {
@@ -15,44 +16,76 @@ const team: TeamMember[] = [
     name: "Giuseppi Pelayo",
     role: "Founder & CEO",
     image: giuseppiImg,
-    bio:
-      "Visionary strategist with a decade of experience in brand development, marketing consulting, and performance analytics. Giuseppi founded P1 to bridge the gap between strategy and execution for ambitious teams.",
+    bio: "Visionary strategist with a decade of experience in brand development, marketing consulting, and performance analytics. Giuseppi founded P1 to bridge the gap between strategy and execution for ambitious teams.",
   },
   {
     name: "Johnny Fok",
     role: "Co-Founder & CTO",
     image: johnnyImg,
-    bio:
-      "Technical architect and automation expert specializing in AI agent development, workflow optimization, and real-time intelligence systems. Johnny drives the technology vision at P1.",
+    bio: "Technical architect and automation expert specializing in AI agent development, workflow optimization, and real-time intelligence systems. Johnny drives the technology vision at P1.",
   },
 ];
 
 /** Founders/team section with profile cards (image, role, name, bio, social links). */
 const TeamSection = () => {
+  const { ref: headerRef, isInView: headerVisible } =
+    useInView<HTMLDivElement>();
+  const { ref: cardsRef, isInView: cardsVisible } =
+    useInView<HTMLDivElement>({ threshold: 0.1 });
+
   return (
-    <section id="team" className="relative py-24 md:py-32 px-6 md:px-12 lg:px-16">
+    <section
+      id="team"
+      className="relative py-24 md:py-32 px-6 md:px-12 lg:px-16"
+    >
       <div className="absolute inset-0 bg-gradient-radial pointer-events-none" />
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-16">
-          <span className="text-sm text-accent font-mono uppercase tracking-wider">
+        <div ref={headerRef} className="text-center mb-16">
+          <span
+            className={`text-sm text-accent font-mono uppercase tracking-wider block transition-[opacity,transform] duration-700 ease-out ${
+              headerVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
+            }`}
+          >
             Our Team
           </span>
-          <h2 className="font-display text-4xl md:text-6xl font-bold tracking-tight text-foreground mt-4">
-            Meet the <span className="italic font-normal text-gradient">Founders</span>
+          <h2
+            className={`font-display text-4xl md:text-6xl font-bold tracking-tight text-foreground mt-4 transition-[opacity,transform] duration-700 ease-out ${
+              headerVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
+            style={{ transitionDelay: "150ms" }}
+          >
+            Meet the{" "}
+            <span className="italic font-normal text-gradient">Founders</span>
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-lg mx-auto text-lg">
+          <p
+            className={`text-muted-foreground mt-4 max-w-lg mx-auto text-lg transition-[opacity,transform] duration-700 ease-out ${
+              headerVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
+            style={{ transitionDelay: "300ms" }}
+          >
             The people behind P1, driving strategy and innovation for businesses
             worldwide.
           </p>
         </div>
 
         {/* Team cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {team.map((member) => (
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {team.map((member, i) => (
             <div
               key={member.name}
-              className="group bg-secondary border border-border rounded-2xl overflow-hidden hover:border-accent/40 transition-colors"
+              className={`group bg-secondary border border-border rounded-2xl overflow-hidden hover:border-accent/40 transition-[opacity,transform,border-color] duration-700 ease-out ${
+                cardsVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-12"
+              }`}
+              style={{ transitionDelay: `${i * 200}ms` }}
             >
               {/* Image */}
               <div className="relative aspect-[4/5] overflow-hidden">
