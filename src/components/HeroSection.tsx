@@ -15,21 +15,22 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 text-center px-6">
-        <h1
-          className="font-display text-[8rem] md:text-[12rem] lg:text-[16rem] font-bold tracking-tighter leading-none text-foreground animate-fade-in-up"
-        >
+        <h1 className="font-display text-[8rem] md:text-[12rem] lg:text-[16rem] font-bold tracking-tighter leading-none text-foreground animate-fade-in-up">
           P1
         </h1>
         <p
           className="mt-6 text-lg md:text-xl text-muted-foreground max-w-lg mx-auto animate-fade-in-up"
           style={{ animationDelay: "0.2s" }}
         >
-          Building the future, one project at a time.
+          Building the future, one product at a time.
         </p>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-fade-in" style={{ animationDelay: "1s" }}>
+      <div
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-fade-in"
+        style={{ animationDelay: "1s" }}
+      >
         <div className="w-5 h-8 border-2 border-muted-foreground/40 rounded-full flex items-start justify-center p-1">
           <div className="w-1 h-2 bg-muted-foreground/60 rounded-full animate-bounce" />
         </div>
