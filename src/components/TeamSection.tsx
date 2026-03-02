@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import giuseppiImg from "@/assets/giuseppi.png";
 import johnnyImg from "@/assets/johnny.png";
 import { useInView } from "@/hooks/use-in-view";
@@ -80,11 +80,25 @@ const TeamSection = () => {
 
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
+  const displayedMemberRef = useRef<TeamMember | null>(null);
+
+  if (selectedMember) {
+    displayedMemberRef.current = selectedMember;
+  }
+
+  const displayedMember = selectedMember ?? displayedMemberRef.current;
+  const panelOpen = selectedMember !== null;
 
   const handleMemberClick = (member: TeamMember) => {
     setSelectedMember(
       selectedMember?.name === member.name ? null : member,
     );
+  };
+
+  const handlePanelTransitionEnd = () => {
+    if (!selectedMember) {
+      displayedMemberRef.current = null;
+    }
   };
 
   const renderAvatar = (
@@ -231,13 +245,14 @@ const TeamSection = () => {
 
         {/* ── Expanded detail panel ── */}
         <div
+          onTransitionEnd={handlePanelTransitionEnd}
           className={`mt-8 overflow-hidden transition-all duration-700 ease-out ${
-            selectedMember
+            panelOpen
               ? "max-h-[1400px] opacity-100"
               : "max-h-0 opacity-0"
           }`}
         >
-          {selectedMember && (
+          {displayedMember && (
             <div className="relative bg-secondary border border-border rounded-2xl p-8 md:p-12">
               {/* Close button */}
               <button
@@ -251,24 +266,24 @@ const TeamSection = () => {
                 {/* Left column: avatar + activity */}
                 <div className="flex flex-col items-center md:items-start">
                   {renderAvatar(
-                    selectedMember,
+                    displayedMember,
                     "w-40 h-40 md:w-48 md:h-48 mx-auto mb-6",
                     "text-6xl md:text-7xl",
                   )}
                   <div className="text-center md:text-left mb-4">
                     <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-                      {selectedMember.name}
+                      {displayedMember.name}
                     </h3>
                     <p className="text-accent font-mono text-sm mt-1">
-                      {selectedMember.role}
+                      {displayedMember.role}
                     </p>
                   </div>
 
                   {/* Activity graphs */}
                   <div className="w-full">
                     <TeamMemberActivity
-                      github={selectedMember.github}
-                      leetcode={selectedMember.leetcode}
+                      github={displayedMember.github}
+                      leetcode={displayedMember.leetcode}
                     />
                   </div>
                 </div>
@@ -280,7 +295,7 @@ const TeamSection = () => {
                       About
                     </h4>
                     <p className="text-lg text-foreground/90 leading-relaxed">
-                      {selectedMember.bio}
+                      {displayedMember.bio}
                     </p>
                   </div>
 
@@ -290,7 +305,7 @@ const TeamSection = () => {
                         Expertise
                       </h4>
                       <div className="flex flex-wrap gap-2">
-                        {selectedMember.expertise.map((skill) => (
+                        {displayedMember.expertise.map((skill) => (
                           <span
                             key={skill}
                             className="px-3 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium border border-accent/20 whitespace-nowrap"
@@ -305,7 +320,7 @@ const TeamSection = () => {
                         Education
                       </h4>
                       <div className="space-y-2">
-                        {selectedMember.education.map((edu, j) => (
+                        {displayedMember.education.map((edu, j) => (
                           <p
                             key={j}
                             className="text-foreground/90 leading-snug"
