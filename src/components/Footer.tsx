@@ -20,8 +20,7 @@ const Footer = () => {
             <div>
               <h4 className="text-sm font-semibold text-foreground mb-4">Connect</h4>
               <div className="flex flex-col gap-3">
-                <a href="mailto:giuseppipelayo@gmail.com" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Giuseppi</a>
-                <a href="mailto:johnny.y.fok@gmail.com" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Johnny</a>
+                <a href="mailto:giuseppipelayo@gmail.com,johnny.y.fok@gmail.com" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Email Us</a>
               </div>
             </div>
           </div>

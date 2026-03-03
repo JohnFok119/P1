@@ -1,8 +1,8 @@
-import { useRef, useState } from "react";
 import giuseppiImg from "@/assets/giuseppi.png";
 import johnnyImg from "@/assets/johnny.png";
-import { useInView } from "@/hooks/use-in-view";
 import { TeamMemberActivity } from "@/components/TeamMemberActivity";
+import { useInView } from "@/hooks/use-in-view";
+import { useRef, useState } from "react";
 
 interface TeamMember {
   name: string;
@@ -75,8 +75,9 @@ const team: TeamMember[] = [
 const TeamSection = () => {
   const { ref: headerRef, isInView: headerVisible } =
     useInView<HTMLDivElement>();
-  const { ref: cardsRef, isInView: cardsVisible } =
-    useInView<HTMLDivElement>({ threshold: 0.1 });
+  const { ref: cardsRef, isInView: cardsVisible } = useInView<HTMLDivElement>({
+    threshold: 0.1,
+  });
 
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
@@ -90,9 +91,7 @@ const TeamSection = () => {
   const panelOpen = selectedMember !== null;
 
   const handleMemberClick = (member: TeamMember) => {
-    setSelectedMember(
-      selectedMember?.name === member.name ? null : member,
-    );
+    setSelectedMember(selectedMember?.name === member.name ? null : member);
   };
 
   const handlePanelTransitionEnd = () => {
@@ -163,7 +162,7 @@ const TeamSection = () => {
             style={{ transitionDelay: "150ms" }}
           >
             Meet the{" "}
-            <span className="italic font-normal text-gradient">Founders</span>
+            <span className="italic font-normal text-accent">Founders</span>
           </h2>
           <p
             className={`text-muted-foreground mt-4 max-w-lg mx-auto text-lg transition-[opacity,transform] duration-700 ease-out ${
@@ -208,7 +207,13 @@ const TeamSection = () => {
                     }))
                   }
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent" />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(to top, hsl(var(--secondary)) 0%, hsl(var(--secondary) / 0) 60%)",
+                  }}
+                />
               </div>
 
               {/* Info */}
@@ -247,9 +252,7 @@ const TeamSection = () => {
         <div
           onTransitionEnd={handlePanelTransitionEnd}
           className={`mt-8 overflow-hidden transition-all duration-700 ease-out ${
-            panelOpen
-              ? "max-h-[1400px] opacity-100"
-              : "max-h-0 opacity-0"
+            panelOpen ? "max-h-[1400px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
           {displayedMember && (
