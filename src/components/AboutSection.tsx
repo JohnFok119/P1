@@ -1,13 +1,16 @@
 import { ArrowRight } from "lucide-react";
-import heroBg from "@/assets/hero-bg.png";
+import basketball from "@/assets/basketball.png";
+import volleyball from "@/assets/volleyball.png";
+import tennis from "@/assets/tennis.png";
+import soccer from "@/assets/soccer.png";
 import { useInView } from "@/hooks/use-in-view";
 
-/** Placeholder images for the cascading gallery — swap with real assets later. */
+/** Sport images for the cascading gallery. */
 const images: { src: string; alt: string }[] = [
-  { src: heroBg, alt: "Team collaboration in modern office" },
-  { src: heroBg, alt: "Motion and innovation" },
-  { src: heroBg, alt: "Focused work environment" },
-  { src: heroBg, alt: "Bold direction forward" },
+  { src: basketball, alt: "Basketball" },
+  { src: volleyball, alt: "Volleyball" },
+  { src: tennis, alt: "Tennis" },
+  { src: soccer, alt: "Soccer" },
 ];
 
 /** Process step card data. */
@@ -19,32 +22,32 @@ interface ProcessCard {
 
 const processCards: ProcessCard[] = [
   {
-    title: "Discover",
+    title: "Record",
     description:
-      "We start by understanding your goals, challenges, and market landscape.",
+      "Capture game footage directly through our mobile app to start tracking your team automatically.",
     bars: 3,
   },
   {
-    title: "Strategize",
+    title: "Analyze",
     description:
-      "Our experts craft a focused plan that aligns with your objectives.",
+      "Our AI processes the video to track every play, movement, and shot without any manual data entry.",
     bars: 4,
   },
   {
-    title: "Execute",
+    title: "Visualize",
     description:
-      "We implement strategies efficiently to deliver measurable growth results.",
+      "View interactive shot charts, player ratings, and detailed game stats inside a clean dashboard.",
     bars: 3,
   },
   {
-    title: "Evolve",
+    title: "Improve",
     description:
-      "We track performance and refine continuously for lasting success.",
+      "Use objective data to build your best lineups, correct player mistakes, and win more games.",
     bars: 4,
   },
 ];
 
-const headlineWords = ["THINK.", "DEVELOP.", "TRANSFORM."];
+const headlineWords = ["RECORD.", "UPLOAD.", "IMPROVE."];
 
 /** About section with two-column headline + cascading images and process cards. */
 const AboutSection = () => {
@@ -90,8 +93,7 @@ const AboutSection = () => {
               }`}
               style={{ transitionDelay: "800ms" }}
             >
-              We work with ambitious teams to uncover opportunities, refine
-              operations, and drive sustainable success.
+              We equip high school and collegiate programs with advanced statistical telemetry. This data optimizes internal player development and scales player visibility to a national network of recruiters.
             </p>
             <a
               href="#team"

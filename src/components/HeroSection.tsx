@@ -22,7 +22,7 @@ const HeroSection = () => {
           className="mt-6 text-lg md:text-xl text-muted-foreground max-w-lg mx-auto animate-fade-in-up"
           style={{ animationDelay: "0.2s" }}
         >
-          Building the future, one product at a time.
+          Building the Future of Sports Analytics.
         </p>
       </div>
 

@@ -155,3 +155,25 @@
     opacity: 0;
   }
 }
+
+/* Vision scan: accent line over a video/frame to suggest CV processing. */
+.vision-scan {
+  position: relative;
+  overflow: hidden;
+}
+
+.vision-scan::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--accent) / 0.5),
+    transparent
+  );
+  animation: scan-line 3s ease-in-out infinite;
+  pointer-events: none;
+}
