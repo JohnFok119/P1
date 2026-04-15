@@ -1,5 +1,5 @@
 import giuseppiImg from "@/assets/giuseppi.png";
-import johnnyImg from "@/assets/johnny.png";
+import johnnyImg from "@/assets/johnny.webp";
 import { TeamMemberActivity } from "@/components/TeamMemberActivity";
 import { useInView } from "@/hooks/use-in-view";
 import { useRef, useState } from "react";
