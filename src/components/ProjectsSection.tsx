@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { fadeUp } from "@/lib/motion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-import basketball from "@/assets/basketball.png";
-import volleyball from "@/assets/volleyball.png";
-import tennis from "@/assets/tennis.png";
-import soccer from "@/assets/soccer.png";
+import basketball from "@/assets/basketball.webp";
+import volleyball from "@/assets/volleyball.webp";
+import tennis from "@/assets/tennis.webp";
+import soccer from "@/assets/soccer.webp";
 import clutchLogo from "@/assets/clutch_logo.webp";
 
 interface Project {

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ease } from "@/lib/motion";
-import basketball from "@/assets/basketball.png";
-import volleyball from "@/assets/volleyball.png";
-import tennis from "@/assets/tennis.png";
-import soccer from "@/assets/soccer.png";
+import basketball from "@/assets/basketball.webp";
+import volleyball from "@/assets/volleyball.webp";
+import tennis from "@/assets/tennis.webp";
+import soccer from "@/assets/soccer.webp";
 
 interface Slide {
   src: string;
@@ -44,7 +44,7 @@ export function HeroCarousel() {
 
   return (
     <div
-      className="absolute inset-0 cursor-grab active:cursor-grabbing"
+      className="absolute inset-0 cursor-grab touch-pan-y active:cursor-grabbing"
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
     >
@@ -55,7 +55,6 @@ export function HeroCarousel() {
           alt={slides[index].alt}
           loading={index === 0 ? "eager" : "lazy"}
           decoding="async"
-          fetchPriority={index === 0 ? "high" : "auto"}
           className="absolute inset-0 w-full h-full object-cover"
           initial={{ opacity: 0, scale: 1.04 }}
           animate={{ opacity: 1, scale: 1 }}

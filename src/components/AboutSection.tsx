@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { fadeUp, imageReveal } from "@/lib/motion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-import basketball from "@/assets/basketball.png";
+import basketball from "@/assets/basketball.webp";
 
 const HEADLINE =
   "We deliver telemetry pipelines that shape player development and directly improve the win rate of the programs we partner with.";

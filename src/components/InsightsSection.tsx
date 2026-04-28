@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { fadeUp } from "@/lib/motion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-import basketball from "@/assets/basketball.png";
-import volleyball from "@/assets/volleyball.png";
-import tennis from "@/assets/tennis.png";
+import basketball from "@/assets/basketball.webp";
+import volleyball from "@/assets/volleyball.webp";
+import tennis from "@/assets/tennis.webp";
 
 interface Post {
   date: string;
