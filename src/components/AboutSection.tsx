@@ -5,14 +5,14 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import basketball from "@/assets/basketball.webp";
 
 const HEADLINE =
-  "We deliver telemetry pipelines that shape player development and directly improve the win rate of the programs we partner with.";
+  "We build the platforms that prove what every athlete can do — independent of where they play, who scouts them, or what their family can afford.";
 
 const PULL_QUOTE =
-  "We build systems where measurement and performance are inseparable.";
+  "Talent is everywhere. Recognition isn't. We're closing that gap.";
 
 const BODY: readonly string[] = [
-  "P1 equips high-school and collegiate programs with professional-grade statistical telemetry — the same caliber of data NBA front offices rely on.",
-  "Our pipelines run on standard match footage. No wearables, no manual stat-keeping, no extra coaching staff. Coaches get the metrics that matter; players get the visibility that recruiters look for.",
+  "Every kid playing the game leaves something behind — a moment, a stat, a streak nobody wrote down. P1 builds the platforms that finally capture all of it. Not for the recruited few, but for every athlete who shows up, every coach who develops them, and every family quietly hoping it adds up to something.",
+  "We're starting where it's hardest — the gym down the block, the pickup game, the recreational league — because if it works there, it works everywhere. From there the data becomes a portfolio. A record of what a player actually does on the court, independent of geography or program access. We're building toward a future where every athlete is seen on merit.",
 ];
 
 /**

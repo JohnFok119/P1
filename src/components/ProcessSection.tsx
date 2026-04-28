@@ -14,77 +14,36 @@ interface Step {
 const steps: Step[] = [
   {
     num: "01",
-    title: "Discovery",
-    summary: "We meet your coaching staff and audit current data workflows.",
+    title: "Computer vision foundation",
+    summary:
+      "Real-time, on-device. YOLO-based detection running at full frame rate on iPhone.",
     detail:
-      "We sit with head coaches, assistants, and program leadership to map the questions you actually need answered. We audit current scouting workflows, manual stat sheets, video review cadence, and recruiting touchpoints — so the system we deliver replaces friction, not adds to it.",
+      "We trained and deployed a YOLO-based detection stack that runs on-device at full frame rate. No streaming, no servers in the inference loop. The phone is the entire pipeline — ball, hoop, players, and plays detected in real time. That's the foundation everything else sits on.",
   },
   {
     num: "02",
-    title: "Calibration",
-    summary: "Camera setup, court calibration, athlete enrollment.",
+    title: "Skill model",
+    summary:
+      "Glicko-2 with custom modifiers across game modes from 1v1 to 5v5.",
     detail:
-      "A one-time calibration locks our vision pipeline to your venue. We register court geometry, jersey rosters, and lighting profiles. Athletes are enrolled into the system in under 5 minutes per roster.",
+      "Built on Glicko-2 with custom modifiers for points, assists, and game-mode dynamics across 1v1 to 5v5. Designed so a player's rating reflects what they actually do — not who they happen to play with. Placement matches and seasonal soft resets keep the ladder honest as the population grows.",
   },
   {
     num: "03",
-    title: "Recording",
-    summary: "Capture games and practices using standard cameras.",
+    title: "Iteration loop",
+    summary: "Beta users sharpen the model with every game logged.",
     detail:
-      "No proprietary hardware. P1 ingests footage from any 1080p camera mounted at midcourt. Coaches record like they always have — we handle the rest.",
-  },
-  {
-    num: "04",
-    title: "Ingestion",
-    summary: "Upload triggers our automated processing pipeline.",
-    detail:
-      "Drag-and-drop upload to the P1 dashboard. Within minutes, our pipeline normalizes the footage, runs detection, tracks every player and the ball, and flags possessions automatically.",
-  },
-  {
-    num: "05",
-    title: "AI Analysis",
-    summary: "Computer vision extracts every shot, pass, and movement.",
-    detail:
-      "Our proprietary models extract granular events — shot location, defender distance, possession outcome, transition speed. Every event is timestamped and searchable.",
-  },
-  {
-    num: "06",
-    title: "Visualization",
-    summary: "Coaches see heatmaps, four-factors, and lineup matrices.",
-    detail:
-      "Outputs land in the coach dashboard: shot heatmaps, four-factor splits, lineup ± , player efficiency ratings. Every chart drills down to the underlying clip.",
-  },
-  {
-    num: "07",
-    title: "Coach Review",
-    summary: "Weekly insight reports tailored to your gameplan.",
-    detail:
-      "We don't just hand over data. P1 generates a weekly insight brief — what changed, what's working, what to address — so the staff acts on findings instead of mining them.",
-  },
-  {
-    num: "08",
-    title: "Recruiter Visibility",
-    summary: "Player profiles published to a national recruiter network.",
-    detail:
-      "Standardized player profiles — efficiency, role-fit, growth trajectory — surface to a network of recruiters at the next level. Visibility scales without your staff lifting a finger.",
-  },
-  {
-    num: "09",
-    title: "Iteration",
-    summary: "Quarterly retros tighten the loop.",
-    detail:
-      "Every quarter we review usage with your staff, retire metrics nobody touches, and add the ones the season actually surfaced. The system improves alongside the program.",
+      "We're our own first beta testers, joined by a small group of early users. Every game logged sharpens the model and the product. The system gets better in proportion to the players using it — and we're building the next layer in front of every release.",
   },
 ];
 
-const HEADLINE =
-  "Our work follows a clear pipeline, so creativity sits alongside statistical and operational rigor.";
+const HEADLINE = "Three layers, built end-to-end.";
 
 /**
- * Process section — 9 numbered steps with single-open inline expansion.
+ * "How we build" section — 3 numbered layers with single-open inline expansion.
  *
  * Clicking a row reveals its detail copy in a smoothly height-tweened panel.
- * Only one step can be open at a time; clicking the open row closes it.
+ * Only one layer can be open at a time; clicking the open row closes it.
  */
 const ProcessSection = () => {
   const [open, setOpen] = useState<string | null>(null);
@@ -103,7 +62,7 @@ const ProcessSection = () => {
             initial="hidden"
             animate={inView ? "show" : "hidden"}
           >
-            Process — 03
+            How we build — 03
           </motion.span>
           <motion.h2
             className="lg:col-span-9 font-display font-medium tracking-tight text-foreground"

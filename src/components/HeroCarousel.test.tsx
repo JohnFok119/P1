@@ -40,7 +40,6 @@ describe("HeroCarousel", () => {
     const files = [
       "AboutSection.tsx",
       "HeroCarousel.tsx",
-      "InsightsSection.tsx",
       "ProjectsSection.tsx",
     ];
 

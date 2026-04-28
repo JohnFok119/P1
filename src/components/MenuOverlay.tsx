@@ -12,11 +12,9 @@ interface MenuItem {
 }
 
 const items: MenuItem[] = [
-  { label: "Projects", href: "#projects" },
-  { label: "Services", href: "#process" },
-  { label: "Process", href: "#process" },
+  { label: "Horizon", href: "#projects" },
+  { label: "How we build", href: "#process" },
   { label: "About", href: "#about" },
-  { label: "Insights", href: "#insights" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -78,10 +76,10 @@ export function MenuOverlay({ open, onClose }: MenuOverlayProps) {
           <div className="px-6 md:px-12 py-6 border-t border-background/10 flex flex-col md:flex-row justify-between gap-4 text-sm font-mono uppercase tracking-widest">
             <span>Irvine, CA</span>
             <a
-              href="mailto:johnny.y.fok@gmail.com"
+              href="mailto:johnny.y.fok@gmail.com,giuseppipelayo@gmail.com"
               className="hover:text-accent transition-colors"
             >
-              johnny.y.fok@gmail.com
+              Get in touch
             </a>
           </div>
         </motion.div>

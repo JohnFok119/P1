@@ -26,7 +26,7 @@ const ContactCTASection = () => {
           aria-hidden
           loading="lazy"
           decoding="async"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-foreground/75 backdrop-blur-sm" />
       </div>
@@ -38,7 +38,7 @@ const ContactCTASection = () => {
           initial="hidden"
           animate={inView ? "show" : "hidden"}
         >
-          Get in touch — 08
+          Get in touch — 05
         </motion.span>
         <motion.h2
           className="font-display font-medium tracking-tight mt-6 mx-auto max-w-3xl"
@@ -48,10 +48,19 @@ const ContactCTASection = () => {
           animate={inView ? "show" : "hidden"}
           transition={{ delay: 0.1 }}
         >
-          For program partnerships, demos, or joining the team.
+          Investors, coaches, parents, and the people who want to build this with us.
         </motion.h2>
+        <motion.p
+          className="mt-6 mx-auto max-w-xl text-background/70 text-base md:text-lg"
+          variants={fadeUp}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+          transition={{ delay: 0.15 }}
+        >
+          We're early. Reach out.
+        </motion.p>
         <motion.div
-          className="mt-12 flex flex-col sm:flex-row gap-4 justify-center"
+          className="mt-12 flex justify-center"
           variants={fadeUp}
           initial="hidden"
           animate={inView ? "show" : "hidden"}
@@ -61,13 +70,7 @@ const ContactCTASection = () => {
             href="mailto:johnny.y.fok@gmail.com,giuseppipelayo@gmail.com"
             className="inline-flex items-center justify-center px-8 py-4 bg-accent text-accent-foreground font-mono text-xs uppercase tracking-widest hover:bg-accent-hover transition-colors"
           >
-            Send an enquiry
-          </a>
-          <a
-            href="#"
-            className="inline-flex items-center justify-center px-8 py-4 bg-background text-foreground font-mono text-xs uppercase tracking-widest hover:bg-background/80 transition-colors"
-          >
-            Book a demo
+            Get in touch
           </a>
         </motion.div>
       </div>

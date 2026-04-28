@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import giuseppiImg from "@/assets/giuseppi.png";
 import johnnyImg from "@/assets/johnny.webp";
-import { TeamMemberActivity } from "@/components/TeamMemberActivity";
 import { fadeUp, imageReveal, ease } from "@/lib/motion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
@@ -27,7 +26,7 @@ const team: TeamMember[] = [
     initial: "G",
     image: giuseppiImg,
     teaser: "Full-stack engineer turning complex concepts into shipping products.",
-    bio: "Giuseppi is a Full-Stack Software Engineer who loves turning complex concepts into shipping products. He currently leads the technical vision at JAGD, where he focuses on rapid prototyping, AI integration, and scalable backend architecture. With a Master's in Computer Science from UC Irvine, Giuseppi combines strong engineering fundamentals with a hands-on approach to building high-performance applications.",
+    bio: "Giuseppi is a Full-Stack Software Engineer who loves turning complex concepts into shipping products. As Founder & CEO of P1, he leads the technical vision — rapid prototyping, AI integration, and scalable backend architecture. With a Master's in Computer Science from UC Irvine, Giuseppi combines strong engineering fundamentals with a hands-on approach to building high-performance applications.",
     expertise: [
       "Full-Stack Engineering",
       "Mobile Development",
@@ -180,30 +179,19 @@ function TeamMemberPanel({ member }: TeamMemberPanelProps) {
           </ul>
         </div>
       </div>
-      <div className="lg:col-span-7 space-y-8">
-        <div>
-          <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-4">
-            Expertise
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {member.expertise.map((skill) => (
-              <span
-                key={skill}
-                className="px-3 py-1.5 rounded-full bg-secondary text-foreground text-sm border border-foreground/10 whitespace-nowrap"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
-        <div>
-          <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-4">
-            Activity
-          </p>
-          <TeamMemberActivity
-            github={member.github}
-            leetcode={member.leetcode}
-          />
+      <div className="lg:col-span-7 lg:self-center">
+        <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-4">
+          Expertise
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {member.expertise.map((skill) => (
+            <span
+              key={skill}
+              className="px-3 py-1.5 rounded-full bg-secondary text-foreground text-sm border border-foreground/10 whitespace-nowrap"
+            >
+              {skill}
+            </span>
+          ))}
         </div>
       </div>
     </div>
@@ -242,7 +230,7 @@ const TeamSection = () => {
             initial="hidden"
             animate={inView ? "show" : "hidden"}
           >
-            Team — 05
+            Team — 04
           </motion.span>
           <motion.h2
             className="lg:col-span-9 font-display font-medium tracking-tight text-foreground"

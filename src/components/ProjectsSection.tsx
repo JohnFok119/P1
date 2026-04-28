@@ -5,50 +5,46 @@ import { fadeUp } from "@/lib/motion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import basketball from "@/assets/basketball.webp";
 import volleyball from "@/assets/volleyball.webp";
-import tennis from "@/assets/tennis.webp";
 import soccer from "@/assets/soccer.webp";
 import clutchLogo from "@/assets/clutch_logo.webp";
 
-interface Project {
+interface Pillar {
   title: string;
-  category: string;
+  description: string;
   image: string;
+  link?: { label: string; href: string };
 }
 
-const projects: Project[] = [
+const pillars: Pillar[] = [
   {
-    title: "Automated Stat Tracking",
-    category: "Computer Vision · Live",
+    title: "A record for every athlete",
+    description:
+      "Today, only the recruited get one. We're building so every player has a portfolio — earned on the court, owned by them.",
     image: basketball,
   },
   {
-    title: "Player Profiling Index",
-    category: "Recruiting · Beta",
+    title: "Starts with basketball",
+    description:
+      "Clutch is our first product, in beta. It turns any phone into the analytics layer pickup basketball never had.",
+    image: clutchLogo,
+    link: { label: "Visit Clutch", href: "https://v0-clutch-web.vercel.app/" },
+  },
+  {
+    title: "Built for every sport",
+    description:
+      "What we built for one court, we're building for every field. Volleyball, soccer, tennis, and beyond — same idea, same access.",
     image: volleyball,
   },
   {
-    title: "Four-Factors Reporting",
-    category: "Coaching · Live",
-    image: tennis,
-  },
-  {
-    title: "AI Vision Tracking",
-    category: "Research · Internal",
+    title: "Built for the leagues that aren't on TV",
+    description:
+      "No premium camera. No paid trainer. No top-tier high school. Just a phone and the will to play.",
     image: soccer,
-  },
-  {
-    title: "Clutch Companion App",
-    category: "Mobile · Live",
-    image: clutchLogo,
   },
 ];
 
 /**
- * Featured projects horizontal snap-carousel.
- *
- * Renders a row of project cards that scroll horizontally with CSS
- * `scroll-snap` and can be advanced 70% of the viewport at a time via the
- * top-right circular arrow buttons.
+ * Horizon section — vision pillars in a horizontal snap-carousel.
  */
 const ProjectsSection = () => {
   const { ref: headerRef, inView: headerIn } = useScrollReveal();
@@ -74,7 +70,7 @@ const ProjectsSection = () => {
               initial="hidden"
               animate={headerIn ? "show" : "hidden"}
             >
-              Featured — 02
+              Horizon — 02
             </motion.span>
             <motion.h2
               className="font-display font-medium tracking-tight text-foreground mt-4"
@@ -84,7 +80,7 @@ const ProjectsSection = () => {
               animate={headerIn ? "show" : "hidden"}
               transition={{ delay: 0.1 }}
             >
-              Featured projects
+              What we're building.
             </motion.h2>
           </div>
           <motion.div
@@ -117,10 +113,10 @@ const ProjectsSection = () => {
         className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-none px-6 md:px-12 lg:px-16 pb-4"
         style={{ scrollbarWidth: "none" }}
       >
-        {projects.map((p, i) => (
+        {pillars.map((p, i) => (
           <motion.article
             key={p.title}
-            className="snap-start shrink-0 w-[80%] md:w-[45%] lg:w-[32%] group cursor-pointer"
+            className="snap-start shrink-0 w-[80%] md:w-[45%] lg:w-[32%] group"
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
@@ -136,16 +132,24 @@ const ProjectsSection = () => {
                 className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
               />
             </div>
-            <div className="mt-4 flex justify-between items-start">
-              <div>
-                <h3 className="font-display text-xl md:text-2xl font-medium text-foreground tracking-tight">
-                  {p.title}
-                </h3>
-                <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mt-2">
-                  {p.category}
-                </p>
-              </div>
-              <ArrowRight className="w-5 h-5 mt-2 text-foreground group-hover:text-accent group-hover:translate-x-1 transition-all" />
+            <div className="mt-4">
+              <h3 className="font-display text-xl md:text-2xl font-medium text-foreground tracking-tight">
+                {p.title}
+              </h3>
+              <p className="text-foreground/70 mt-3 leading-relaxed text-base">
+                {p.description}
+              </p>
+              {p.link && (
+                <a
+                  href={p.link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-4 font-mono text-xs uppercase tracking-widest text-foreground hover:text-accent transition-colors"
+                >
+                  {p.link.label}
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+              )}
             </div>
           </motion.article>
         ))}

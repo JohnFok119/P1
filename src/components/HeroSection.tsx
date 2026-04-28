@@ -5,7 +5,7 @@ import { HeroCarousel } from "@/components/HeroCarousel";
 import { Loader } from "@/components/Loader";
 
 const HERO_HEADLINE =
-  "We build intelligent telemetry for high-performance athletic programs.";
+  "Talent is everywhere. We build the platforms that prove it.";
 
 /**
  * Above-the-fold hero: full-bleed image carousel + loader curtain + headline.
