@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Outfit", "sans-serif"],
-        display: ["Space Grotesk", "sans-serif"],
+        sans: ["Inter", "system-ui", "sans-serif"],
+        display: ['"Inter Tight"', "Inter", "system-ui", "sans-serif"],
+        mono: ['"JetBrains Mono"', "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -43,6 +44,7 @@ export default {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
+        "accent-hover": "hsl(15 100% 45%)",
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -51,7 +53,6 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        glow: "hsl(var(--glow))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -91,7 +92,7 @@ export default {
         },
         "pulse-glow": {
           "0%, 100%": { filter: "drop-shadow(0 0 0px transparent)" },
-          "50%": { filter: "drop-shadow(0 0 6px hsl(262 83% 58% / 0.6))" },
+          "50%": { filter: "drop-shadow(0 0 6px hsl(var(--accent) / 0.6))" },
         },
         "spin-slow": {
           from: { transform: "rotate(0deg)" },
@@ -105,6 +106,22 @@ export default {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0" },
         },
+        "reveal-up": {
+          "0%": { opacity: "0", transform: "translateY(24px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "reveal-image": {
+          "0%": { opacity: "0", transform: "scale(1.04)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        "loader-fill": {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" },
+        },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -117,6 +134,10 @@ export default {
         "spin-slow": "spin-slow 4s linear infinite",
         "gentle-pulse": "gentle-pulse 3s ease-in-out infinite",
         "blink-cursor": "blink-cursor 1s step-end infinite",
+        "reveal-up": "reveal-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "reveal-image": "reveal-image 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "loader-fill": "loader-fill 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        marquee: "marquee 40s linear infinite",
       },
     },
   },

@@ -1,202 +1,116 @@
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { fadeUp, imageReveal } from "@/lib/motion";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import basketball from "@/assets/basketball.png";
-import volleyball from "@/assets/volleyball.png";
-import tennis from "@/assets/tennis.png";
-import soccer from "@/assets/soccer.png";
-import { useInView } from "@/hooks/use-in-view";
 
-/** Sport images for the cascading gallery. */
-const images: { src: string; alt: string }[] = [
-  { src: basketball, alt: "Basketball" },
-  { src: volleyball, alt: "Volleyball" },
-  { src: tennis, alt: "Tennis" },
-  { src: soccer, alt: "Soccer" },
+const HEADLINE =
+  "We deliver telemetry pipelines that shape player development and directly improve the win rate of the programs we partner with.";
+
+const PULL_QUOTE =
+  "We build systems where measurement and performance are inseparable.";
+
+const BODY: readonly string[] = [
+  "P1 equips high-school and collegiate programs with professional-grade statistical telemetry — the same caliber of data NBA front offices rely on.",
+  "Our pipelines run on standard match footage. No wearables, no manual stat-keeping, no extra coaching staff. Coaches get the metrics that matter; players get the visibility that recruiters look for.",
 ];
 
-/** Process step card data. */
-interface ProcessCard {
-  title: string;
-  description: string;
-  bars: number;
-}
-
-const processCards: ProcessCard[] = [
-  {
-    title: "Record",
-    description:
-      "Capture game footage directly through our mobile app to start tracking your team automatically.",
-    bars: 3,
-  },
-  {
-    title: "Analyze",
-    description:
-      "Our AI processes the video to track every play, movement, and shot without any manual data entry.",
-    bars: 4,
-  },
-  {
-    title: "Visualize",
-    description:
-      "View interactive shot charts, player ratings, and detailed game stats inside a clean dashboard.",
-    bars: 3,
-  },
-  {
-    title: "Improve",
-    description:
-      "Use objective data to build your best lineups, correct player mistakes, and win more games.",
-    bars: 4,
-  },
-];
-
-const headlineWords = ["RECORD.", "UPLOAD.", "IMPROVE."];
-
-/** About section with two-column headline + cascading images and process cards. */
+/**
+ * About statement section.
+ *
+ * Two-column layout: bold sentence-case headline on the left, large portrait
+ * image on the right. An indented italic pull-quote sits between, followed by
+ * body paragraphs and a circular-arrow "Learn more" CTA pinned bottom-right.
+ */
 const AboutSection = () => {
-  const { ref: heroRef, isInView: heroVisible } = useInView<HTMLDivElement>({
-    threshold: 0.15,
-  });
-  const { ref: cardsRef, isInView: cardsVisible } = useInView<HTMLDivElement>({
-    threshold: 0.2,
-  });
+  const { ref, inView } = useScrollReveal(0.15);
 
   return (
     <section
       id="about"
-      className="relative bg-background px-6 md:px-12 lg:px-16 py-24 md:py-32"
+      ref={ref}
+      className="relative bg-background px-6 md:px-12 lg:px-16 py-24 md:py-40"
     >
-      <div className="max-w-7xl mx-auto">
-        <div
-          ref={heroRef}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start"
+      <div className="max-w-[1440px] mx-auto">
+        <motion.span
+          className="font-mono text-xs uppercase tracking-widest text-muted-foreground block mb-12"
+          variants={fadeUp}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
         >
-          {/* Left content */}
-          <div className="flex flex-col gap-8">
-            <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.95] text-foreground">
-              {headlineWords.map((word, i) => (
-                <span
-                  key={word}
-                  className={`italic block transition-all duration-700 ease-out ${
-                    heroVisible
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-8"
-                  }`}
-                  style={{ transitionDelay: `${i * 200}ms` }}
-                >
-                  {word}
-                </span>
-              ))}
-            </h2>
-            <p
-              className={`text-muted-foreground text-lg leading-relaxed max-w-md transition-all duration-700 ease-out ${
-                heroVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: "800ms" }}
-            >
-              We equip high school and collegiate programs with advanced statistical telemetry. This data optimizes internal player development and scales player visibility to a national network of recruiters.
-            </p>
-            <a
-              href="#team"
-              className={`inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-accent transition-all duration-700 ease-out group ${
-                heroVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: "1000ms" }}
-            >
-              About us
-              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-accent text-accent-foreground group-hover:scale-110 transition-transform">
-                <ArrowRight className="w-3.5 h-3.5" />
-              </span>
-            </a>
-          </div>
+          About — 01
+        </motion.span>
 
-          {/* Right cascading images (desktop) — staircase slide-in from right */}
-          <div className="relative h-[500px] md:h-[600px] hidden md:block">
-            {images.map((img, i) => (
-              <div
-                key={img.alt}
-                className={`absolute rounded-lg overflow-hidden shadow-2xl transition-all duration-700 ease-out ${
-                  heroVisible
-                    ? "opacity-100 translate-x-0 scale-100"
-                    : "opacity-0 translate-x-20 scale-95"
-                }`}
-                style={{
-                  width: "200px",
-                  height: "160px",
-                  top: `${i * 100}px`,
-                  left: `${i * 80}px`,
-                  zIndex: i + 1,
-                  transitionDelay: `${200 + i * 150}ms`,
-                }}
-              >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+          <motion.h2
+            className="lg:col-span-7 font-display font-medium tracking-tight leading-[1.05] text-foreground"
+            style={{ fontSize: "clamp(2rem, 4vw, 3.75rem)" }}
+            variants={fadeUp}
+            initial="hidden"
+            animate={inView ? "show" : "hidden"}
+            transition={{ delay: 0.1 }}
+          >
+            {HEADLINE}
+          </motion.h2>
 
-          {/* Mobile image grid */}
-          <div className="grid grid-cols-2 gap-4 md:hidden">
-            {images.map((img, i) => (
-              <div
-                key={img.alt}
-                className={`aspect-[4/3] relative rounded-lg overflow-hidden transition-all duration-700 ease-out ${
-                  heroVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                }`}
-                style={{ transitionDelay: `${300 + i * 100}ms` }}
-              >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
+          <motion.div
+            className="lg:col-span-5 aspect-[4/5] overflow-hidden rounded-sm"
+            variants={imageReveal}
+            initial="hidden"
+            animate={inView ? "show" : "hidden"}
+            transition={{ delay: 0.2 }}
+          >
+            <img
+              src={basketball}
+              alt="Player on court"
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
         </div>
 
-        {/* Process cards row — staggered rise with bar-grow animation */}
-        <div
-          ref={cardsRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-24"
-        >
-          {processCards.map((card, i) => (
-            <div
-              key={card.title}
-              className={`bg-secondary border border-border rounded-lg p-6 flex flex-col gap-4 transition-all duration-700 ease-out ${
-                cardsVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
-              style={{ transitionDelay: `${i * 150}ms` }}
-            >
-              <div className="flex gap-1">
-                {Array.from({ length: card.bars }).map((_, j) => (
-                  <div
-                    key={j}
-                    className={`w-0.5 bg-accent rounded-full transition-all duration-500 ease-out origin-bottom ${
-                      cardsVisible ? "h-4" : "h-0"
-                    }`}
-                    style={{
-                      transitionDelay: `${i * 150 + 400 + j * 75}ms`,
-                    }}
-                  />
-                ))}
-              </div>
-              <h3 className="text-xl font-bold text-foreground">
-                {card.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {card.description}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mt-24">
+          <motion.blockquote
+            className="lg:col-span-7 lg:col-start-3 font-display italic font-light text-foreground leading-snug"
+            style={{ fontSize: "clamp(1.75rem, 3vw, 3rem)" }}
+            variants={fadeUp}
+            initial="hidden"
+            animate={inView ? "show" : "hidden"}
+            transition={{ delay: 0.3 }}
+          >
+            &ldquo;{PULL_QUOTE}&rdquo;
+          </motion.blockquote>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mt-24">
+          <motion.div
+            className="lg:col-span-6 lg:col-start-7 space-y-6"
+            variants={fadeUp}
+            initial="hidden"
+            animate={inView ? "show" : "hidden"}
+            transition={{ delay: 0.4 }}
+          >
+            {BODY.map((paragraph) => (
+              <p
+                key={paragraph}
+                className="text-lg text-foreground/80 leading-relaxed"
+              >
+                {paragraph}
               </p>
-            </div>
-          ))}
+            ))}
+            <a
+              href="#process"
+              className="inline-flex items-center gap-3 mt-4 group"
+            >
+              <span className="font-mono text-xs uppercase tracking-widest text-foreground group-hover:text-accent transition-colors">
+                Learn more about us
+              </span>
+              <span className="flex items-center justify-center w-10 h-10 rounded-full bg-foreground text-background group-hover:bg-accent transition-colors">
+                <ArrowRight className="w-4 h-4" />
+              </span>
+            </a>
+          </motion.div>
         </div>
       </div>
     </section>

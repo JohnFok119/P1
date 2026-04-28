@@ -1,39 +1,41 @@
-import heroBg from "@/assets/hero-bg.png";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { ease } from "@/lib/motion";
+import { HeroCarousel } from "@/components/HeroCarousel";
+import { Loader } from "@/components/Loader";
 
+const HERO_HEADLINE =
+  "We build intelligent telemetry for high-performance athletic programs.";
+
+/**
+ * Above-the-fold hero: full-bleed image carousel + loader curtain + headline.
+ *
+ * Mounts a one-shot `Loader` curtain on first render that fades away to reveal
+ * the rotating `HeroCarousel`. The headline is gated on the `loaded` state so
+ * it animates up after the loader leaves.
+ */
 const HeroSection = () => {
+  const [loaded, setLoaded] = useState(false);
+
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={heroBg}
-          alt="P1 team working"
-          className="w-full h-full object-cover opacity-50 object-[center_1%]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/50 to-background" />
-      </div>
+    <section
+      id="hero"
+      className="relative min-h-screen w-full overflow-hidden text-background"
+    >
+      {!loaded && <Loader onComplete={() => setLoaded(true)} />}
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-6">
-        <h1 className="font-display text-[8rem] md:text-[12rem] lg:text-[16rem] font-bold tracking-tighter leading-none text-foreground animate-fade-in-up">
-          P1
-        </h1>
-        <p
-          className="mt-6 text-lg md:text-xl text-muted-foreground max-w-lg mx-auto animate-fade-in-up"
-          style={{ animationDelay: "0.2s" }}
+      <HeroCarousel />
+
+      <div className="relative z-10 flex flex-col justify-end h-screen px-6 md:px-12 lg:px-16 pb-24 md:pb-32 pointer-events-none">
+        <motion.h1
+          className="font-display font-medium tracking-tight leading-[0.95] text-background max-w-5xl"
+          style={{ fontSize: "clamp(2.5rem, 7vw, 6.5rem)" }}
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: loaded ? 1 : 0, y: loaded ? 0 : 32 }}
+          transition={{ duration: 1.0, ease, delay: 0.2 }}
         >
-          Building the Future of Sports Analytics.
-        </p>
-      </div>
-
-      {/* Scroll indicator */}
-      <div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-fade-in"
-        style={{ animationDelay: "1s" }}
-      >
-        <div className="w-5 h-8 border-2 border-muted-foreground/40 rounded-full flex items-start justify-center p-1">
-          <div className="w-1 h-2 bg-muted-foreground/60 rounded-full animate-bounce" />
-        </div>
+          {HERO_HEADLINE}
+        </motion.h1>
       </div>
     </section>
   );

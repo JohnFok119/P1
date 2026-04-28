@@ -15,8 +15,8 @@ interface TeamMemberActivityProps {
   leetcode?: string;
 }
 
-const GITHUB_COLORS = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"];
-const LEETCODE_COLORS = ["#1a1a1a", "#0e4429", "#006d32", "#26a641", "#39d353"];
+const GITHUB_COLORS = ["#EAE6D8", "#0e4429", "#006d32", "#26a641", "#39d353"];
+const LEETCODE_COLORS = ["#EAE6D8", "#0e4429", "#006d32", "#26a641", "#39d353"];
 
 function getColor(count: number, max: number, colors: string[]) {
   if (count === 0) return colors[0];
@@ -148,7 +148,7 @@ function ContributionGraph({
 
       {/* LeetCode summary */}
       {type === "leetcode" && leetcodeStats && (
-        <div className="mb-4 p-4 rounded-lg bg-background border border-border">
+        <div className="mb-4 p-4 rounded-sm bg-secondary border border-foreground/10">
           <div className="flex items-center gap-6">
             <div>
               <span className="text-2xl font-bold text-foreground">
